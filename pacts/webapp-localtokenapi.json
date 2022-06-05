@@ -13,11 +13,11 @@
         "method": "GET",
         "path": "/token/1234",
         "headers": {
-          "Accept": "application/json"
+          "Accept": "application/json, text/plain, */*"
         }
       },
       "response": {
-        "status": 200,
+        "status": 202,
         "headers": {
           "Content-Type": "application/json"
         },
@@ -38,11 +38,30 @@
         "method": "GET",
         "path": "/token/",
         "headers": {
-          "Accept": "application/json"
+          "Accept": "application/json, text/plain, */*"
         }
       },
       "response": {
         "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+        }
+      }
+    },
+    {
+      "description": "GET user token with invalid String token ID",
+      "providerState": "Has User Tokens",
+      "request": {
+        "method": "GET",
+        "path": "/token/invalidString",
+        "headers": {
+          "Accept": "application/json, text/plain, */*"
+        }
+      },
+      "response": {
+        "status": 500,
         "headers": {
           "Content-Type": "application/json"
         },

@@ -9,9 +9,15 @@ const getTokenResponseById = async (id) => {
     const requestPayload = {
         method: 'get',
         url: serverURL.href,
-        headers: { Accept: "application/json" }
+        headers: { Accept: "application/json, text/plain, */*" }
     }
-    const response = await axios(requestPayload);
+    let response; 
+    try {
+        response = await axios(requestPayload);
+    } catch (error) { //required as Axios will fail anything that is not in a response range of 2xx
+        return error.response;
+    }
+
     return response;
 }
 

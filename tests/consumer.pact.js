@@ -28,21 +28,19 @@ describe('Consumer Test for PACT using LocalHost', () =>{
                 withRequest:{
                     method: "GET",
                     path: "/token/1234",
-                    headers: {Accept:"application/json"}
+                    headers: {Accept:"application/json, text/plain, */*"}
                 },
                 willRespondWith:{
                     headers: {"Content-Type": "application/json"},
-                    status: 200,
+                    status: 202,
                     body: { "token": string("bearer") }            //Pact has string matcher to confirm that the value returned is a string (alternatively a decimal etc)
                 }})
             })
 
-
-
         it('Returns a token string',async() =>{
             const response = await token.getTokenResponseById(1234);
-            expect(response.status).to.be.equal(200);
-            expect(response.statusText.replace(/\s+/g, '')).to.be.equal('OK');  //Workaround for weird windows 10 behaviour of returning 'OK '
+            expect(response.status).to.be.equal(202);
+            expect(response.statusText.replace(/\s+/g, '')).to.be.equal('Accepted');  //Workaround for weird windows 10 behaviour of returning 'OK '
             })
             //Test intercepts the call you are making to the API. Pact uses this to verify that the interaction setup earlier is that was intended
     })
@@ -55,7 +53,7 @@ describe('Consumer Test for PACT using LocalHost', () =>{
                 withRequest:{
                     method: "GET",
                     path: "/token/",
-                    headers: {Accept:"application/json"}
+                    headers: {Accept:"application/json, text/plain, */*"}
                 },
                 willRespondWith:{
                     headers: {"Content-Type": "application/json"},
@@ -69,6 +67,29 @@ describe('Consumer Test for PACT using LocalHost', () =>{
                 expect(response.body).to.be.equal(undefined);
             })
      })
+
+     describe('When requesting an invalid string token from localhost using GET',()=>{
+        it('Returns an undefined body',async() =>{
+            provider.addInteraction({
+                state:"Has User Tokens",                                        
+                uponReceiving: "GET user token with invalid String token ID",             
+                withRequest:{
+                    method: "GET",
+                    path: "/token/invalidString",
+                    headers: {Accept:"application/json, text/plain, */*"}
+                },
+                willRespondWith:{
+                    headers: {"Content-Type": "application/json"},
+                    status: 500,
+                    body: {}            
+                }
+            })
+            const response = await token.getTokenResponseById('invalidString');
+                expect(response.status).to.be.equal(500);
+                expect(response.body).to.be.equal(undefined);
+            })
+     })
+
 
     afterEach(() =>provider.verify());      //Verify call made matches with the interaction
     after(()=> {
