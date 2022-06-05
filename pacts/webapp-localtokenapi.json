@@ -1,0 +1,59 @@
+{
+  "consumer": {
+    "name": "WebApp"
+  },
+  "provider": {
+    "name": "LocalTokenAPI"
+  },
+  "interactions": [
+    {
+      "description": "GET user token with token ID",
+      "providerState": "Has User Tokens",
+      "request": {
+        "method": "GET",
+        "path": "/token/1234",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "token": "bearer"
+        },
+        "matchingRules": {
+          "$.body.token": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "GET user token with NULL token ID",
+      "providerState": "Has User Tokens",
+      "request": {
+        "method": "GET",
+        "path": "/token/",
+        "headers": {
+          "Accept": "application/json"
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
