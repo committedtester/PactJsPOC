@@ -7,7 +7,7 @@
   },
   "interactions": [
     {
-      "description": "GET user token with token ID",
+      "description": "Get user token with token ID",
       "providerState": "Has User Tokens",
       "request": {
         "method": "GET",
@@ -32,7 +32,7 @@
       }
     },
     {
-      "description": "GET user token with NULL token ID",
+      "description": "Get user token with NULL token ID",
       "providerState": "Has User Tokens",
       "request": {
         "method": "GET",
@@ -51,7 +51,7 @@
       }
     },
     {
-      "description": "GET user token with invalid String token ID",
+      "description": "Get user token with invalid String token ID",
       "providerState": "Has User Tokens",
       "request": {
         "method": "GET",

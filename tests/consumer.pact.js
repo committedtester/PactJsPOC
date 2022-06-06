@@ -24,7 +24,7 @@ describe('Consumer Test for PACT using LocalHost', () =>{
         before(()=>{
                 provider.addInteraction({
                 state:"Has User Tokens",                                //Declares what state the system should be before the test can be execucted (aka Data Setup)
-                uponReceiving: "GET user token with token ID",                        // Description of Interaction
+                uponReceiving: "Get user token with token ID",                        // Description of Interaction
                 withRequest:{
                     method: "GET",
                     path: "/token/1234",
@@ -49,7 +49,7 @@ describe('Consumer Test for PACT using LocalHost', () =>{
         it('Returns an undefined body',async() =>{
             provider.addInteraction({
                 state:"Has User Tokens",                                        
-                uponReceiving: "GET user token with NULL token ID",             
+                uponReceiving: "Get user token with NULL token ID",             
                 withRequest:{
                     method: "GET",
                     path: "/token/",
@@ -72,7 +72,7 @@ describe('Consumer Test for PACT using LocalHost', () =>{
         it('Returns an undefined body',async() =>{
             provider.addInteraction({
                 state:"Has User Tokens",                                        
-                uponReceiving: "GET user token with invalid String token ID",             
+                uponReceiving: "Get user token with invalid String token ID",             
                 withRequest:{
                     method: "GET",
                     path: "/token/invalidString",
