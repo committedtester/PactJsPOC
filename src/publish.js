@@ -13,7 +13,7 @@ const options = {
 new Publisher(options)
   .publishPacts()
   .then(() => {
-    console.log("Publish Complete");
+    console.log(`Publish Complete on ${options.pactBroker}`);
   })
   .catch((e) => {
     console.log(`Error is ${e}`);

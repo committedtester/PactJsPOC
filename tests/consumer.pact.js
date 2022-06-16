@@ -23,7 +23,7 @@ describe('Consumer Test for PACT using LocalHost', () =>{
     describe('When requesting a token ID from localhost using GET',()=>{
         before(()=>{
                 provider.addInteraction({
-                state:"Has User Tokens",                                //Declares what state the system should be before the test can be execucted (aka Data Setup)
+                state:"The server has User Tokens",                                //Declares what state the system should be before the test can be execucted (aka Data Setup)
                 uponReceiving: "Get user token with token ID",                        // Description of Interaction
                 withRequest:{
                     method: "GET",
@@ -48,7 +48,7 @@ describe('Consumer Test for PACT using LocalHost', () =>{
     describe('When requesting a null token from localhost using GET',()=>{
         it('Returns an undefined body',async() =>{
             provider.addInteraction({
-                state:"Has User Tokens",                                        
+                state:"The server has User Tokens",                                         
                 uponReceiving: "Get user token with NULL token ID",             
                 withRequest:{
                     method: "GET",
@@ -57,13 +57,13 @@ describe('Consumer Test for PACT using LocalHost', () =>{
                 },
                 willRespondWith:{
                     headers: {"Content-Type": "application/json"},
-                    status: 200,
+                    status: 400,
                     body: {}            
                 }
             })
             const response = await token.getTokenResponseById();
-                expect(response.status).to.be.equal(200);
-                expect(response.statusText.replace(/\s+/g, '')).to.be.equal('OK');  //Workaround for weird windows 10 behaviour of returning 'OK '
+                expect(response.status).to.be.equal(400);
+                expect(response.statusText.replace(/\s+/g, '')).to.be.equal('BadRequest');  //Workaround for weird windows 10 behaviour of returning 'OK '
                 expect(response.body).to.be.equal(undefined);
             })
      })
@@ -71,7 +71,7 @@ describe('Consumer Test for PACT using LocalHost', () =>{
      describe('When requesting an invalid string token from localhost using GET',()=>{
         it('Returns an undefined body',async() =>{
             provider.addInteraction({
-                state:"Has User Tokens",                                        
+                state:"The server has User Tokens",                                         
                 uponReceiving: "Get user token with invalid String token ID",             
                 withRequest:{
                     method: "GET",

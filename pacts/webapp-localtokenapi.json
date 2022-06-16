@@ -8,7 +8,7 @@
   "interactions": [
     {
       "description": "Get user token with token ID",
-      "providerState": "Has User Tokens",
+      "providerState": "The server has User Tokens",
       "request": {
         "method": "GET",
         "path": "/token/1234",
@@ -33,7 +33,7 @@
     },
     {
       "description": "Get user token with NULL token ID",
-      "providerState": "Has User Tokens",
+      "providerState": "The server has User Tokens",
       "request": {
         "method": "GET",
         "path": "/token/",
@@ -42,7 +42,7 @@
         }
       },
       "response": {
-        "status": 200,
+        "status": 400,
         "headers": {
           "Content-Type": "application/json"
         },
@@ -52,7 +52,7 @@
     },
     {
       "description": "Get user token with invalid String token ID",
-      "providerState": "Has User Tokens",
+      "providerState": "The server has User Tokens",
       "request": {
         "method": "GET",
         "path": "/token/invalidString",
