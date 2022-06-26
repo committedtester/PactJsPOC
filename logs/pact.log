@@ -1,0 +1,16 @@
+I, [2022-06-26T21:50:44.295408 #3472]  INFO -- : Received request GET /token/123
+I, [2022-06-26T21:50:44.298411 #3472]  INFO -- : Registered expected interaction GET /token/123
+I, [2022-06-26T21:50:44.299443 #3472]  INFO -- : Found matching response for GET /token/123
+I, [2022-06-26T21:50:44.327412 #3472]  INFO -- : Verifying - interactions matched
+I, [2022-06-26T21:50:44.341406 #3472]  INFO -- : Cleared interactions
+I, [2022-06-26T21:50:44.368406 #3472]  INFO -- : Registered expected interaction GET /token/
+I, [2022-06-26T21:50:44.369409 #3472]  INFO -- : Received request GET /token/
+I, [2022-06-26T21:50:44.370409 #3472]  INFO -- : Found matching response for GET /token/
+I, [2022-06-26T21:50:44.384406 #3472]  INFO -- : Verifying - interactions matched
+I, [2022-06-26T21:50:44.399408 #3472]  INFO -- : Cleared interactions
+I, [2022-06-26T21:50:44.416411 #3472]  INFO -- : Registered expected interaction GET /token/invalidString
+I, [2022-06-26T21:50:44.418408 #3472]  INFO -- : Received request GET /token/invalidString
+I, [2022-06-26T21:50:44.418408 #3472]  INFO -- : Found matching response for GET /token/invalidString
+I, [2022-06-26T21:50:44.433405 #3472]  INFO -- : Verifying - interactions matched
+I, [2022-06-26T21:50:44.449408 #3472]  INFO -- : Cleared interactions
+I, [2022-06-26T21:50:44.465409 #3472]  INFO -- : Writing pact for LocalTokenAPI to C:/PROJECTS_GIT/PactJsPOC/pacts/webapp-localtokenapi.json

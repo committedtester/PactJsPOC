@@ -11,13 +11,13 @@
       "providerState": "The server has User Tokens",
       "request": {
         "method": "GET",
-        "path": "/token/1234",
+        "path": "/token/123",
         "headers": {
           "Accept": "application/json, text/plain, */*"
         }
       },
       "response": {
-        "status": 202,
+        "status": 200,
         "headers": {
           "Content-Type": "application/json"
         },
@@ -42,7 +42,7 @@
         }
       },
       "response": {
-        "status": 400,
+        "status": 200,
         "headers": {
           "Content-Type": "application/json"
         },
@@ -61,7 +61,7 @@
         }
       },
       "response": {
-        "status": 500,
+        "status": 200,
         "headers": {
           "Content-Type": "application/json"
         },

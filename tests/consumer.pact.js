@@ -27,20 +27,20 @@ describe('Consumer Test for PACT using LocalHost', () =>{
                 uponReceiving: "Get user token with token ID",                        // Description of Interaction
                 withRequest:{
                     method: "GET",
-                    path: "/token/1234",
+                    path: "/token/123",
                     headers: {Accept:"application/json, text/plain, */*"}
                 },
                 willRespondWith:{
                     headers: {"Content-Type": "application/json"},
-                    status: 202,
+                    status: 200,
                     body: { "token": string("bearer") }            //Pact has string matcher to confirm that the value returned is a string (alternatively a decimal etc)
                 }})
             })
 
         it('Returns a token string',async() =>{
-            const response = await token.getTokenResponseById(1234);
-            expect(response.status).to.be.equal(202);
-            expect(response.statusText.replace(/\s+/g, '')).to.be.equal('Accepted');  //Workaround for weird windows 10 behaviour of returning 'OK '
+            const response = await token.getTokenResponseById(123);
+            expect(response.status).to.be.equal(200);
+            expect(response.statusText.replace(/\s+/g, '')).to.be.equal('OK');  //Workaround for weird windows 10 behaviour of returning 'OK '
             })
             //Test intercepts the call you are making to the API. Pact uses this to verify that the interaction setup earlier is that was intended
     })
@@ -57,13 +57,13 @@ describe('Consumer Test for PACT using LocalHost', () =>{
                 },
                 willRespondWith:{
                     headers: {"Content-Type": "application/json"},
-                    status: 400,
+                    status: 200,
                     body: {}            
                 }
             })
             const response = await token.getTokenResponseById();
-                expect(response.status).to.be.equal(400);
-                expect(response.statusText.replace(/\s+/g, '')).to.be.equal('BadRequest');  //Workaround for weird windows 10 behaviour of returning 'OK '
+                expect(response.status).to.be.equal(200);
+                expect(response.statusText.replace(/\s+/g, '')).to.be.equal('OK');  //Workaround for weird windows 10 behaviour of returning 'OK '
                 expect(response.body).to.be.equal(undefined);
             })
      })
@@ -80,12 +80,12 @@ describe('Consumer Test for PACT using LocalHost', () =>{
                 },
                 willRespondWith:{
                     headers: {"Content-Type": "application/json"},
-                    status: 500,
+                    status: 200,
                     body: {}            
                 }
             })
             const response = await token.getTokenResponseById('invalidString');
-                expect(response.status).to.be.equal(500);
+                expect(response.status).to.be.equal(200);
                 expect(response.body).to.be.equal(undefined);
             })
      })
